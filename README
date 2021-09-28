@@ -1,0 +1,8 @@
+# This is the BASECODE for our ARTIFICIAL NEURAL NETWORKK #
+
+This is a temporary repository to be transfer soon.
+
+## MNIST DATASET ##
+
+The created temporary MNIST dataset is 300 x 785 with first column as label
+while the next columns as 28*28 data in vector form
