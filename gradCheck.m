@@ -54,7 +54,7 @@ end
         a = softmax(z')';
         
         Y_out = a;
-        Y_out(Y_out == 0) = 10^-15; % approximating 0 as an infinitesimally small number; for numerical stability
+        Y_out(Y_out == 0) = realmin; % approximating 0 as an infinitesimally small number; for numerical stability
         
         
         J = (1/size(Y_hat,1))*sum(Y_hat.*log(Y_out),'all');
