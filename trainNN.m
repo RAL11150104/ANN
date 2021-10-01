@@ -19,8 +19,8 @@ function [W, b, J_plot] = trainNN(X, Y, h, N_h, LR, E)
     J_plot = zeros(1,E);
 
     for i = 1:E
-        [~, J, Z, A] = forwardPass(W, b, X, Y); % forward pass
-        [dW, db] = backwardPass(W, b, X, Y, Z, A); % backward pass
+        [Y_o, J, Z, A] = forwardPass(W, b, X, Y); % forward pass
+        [dW, db] = backwardPass(W, b, X, Y, Y_o, Z, A); % backward pass
         [W, b] = updateParams(W, b, dW, db, LR); % updating parameters
         J_plot(i) = J;
     end

@@ -45,15 +45,19 @@ end
         z = X*W{1}' + b{1}';
         a = relu(z);
 
-        for i = 2:size(W,2)
+        for i = 2:size(W,2)-1
             z = a*W{i}' + b{i}';
             a = relu(z);
         end
+        
+        z = a*W{i+1}' + b{i+1}';
+        a = softmax(z')';
+        
         Y_out = a;
-        Y_log = log(Y_out);
-        Y_log(isinf(Y_log)) = -100; % approximating negative inf as a finite floating point value; for numerical stability
-
-        J = (1/size(Y_hat,1))*sum(Y_hat.*Y_log,'all');
+        Y_out(Y_out == 0) = realmin; % approximating 0 as an infinitesimally small number; for numerical stability
+        
+        
+        J = (1/size(Y_hat,1))*sum(Y_hat.*log(Y_out),'all');
     end
 
     function a = relu(a)
@@ -62,4 +66,3 @@ end
     end
 
 end
-
