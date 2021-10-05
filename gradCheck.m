@@ -57,7 +57,7 @@ end
         Y_out(Y_out == 0) = realmin; % approximating 0 as an infinitesimally small number; for numerical stability
         
         
-        J = (1/size(Y_hat,1))*sum(Y_hat.*log(Y_out),'all');
+        J = (-1/size(Y_hat,1))*sum(Y_hat.*log(Y_out),'all');
     end
 
     function a = relu(a)
