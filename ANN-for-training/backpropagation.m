@@ -1,12 +1,12 @@
 function [dW,db] = backpropagation(weights,bias,input,output,Z,A)
     
-    dE = @(y,y_hat)(-1*y./y_hat); 
-    dA = @(x)(x.*(1-x));
+    % dE = @(y,y_hat)(-1*y./y_hat); 
+    % dA = @(x)(x.*(1-x));
     
     dW = weights;
     db = bias;
     weights_total = length(weights);
-    back_error = dE(output,A{end}).*dA(A{end});
+    back_error = (1/size(output,2))*(A{end} - output);
     for i = 1:weights_total
         if i == weights_total
             dW{end-(i-1)} = input * back_error';
@@ -14,7 +14,7 @@ function [dW,db] = backpropagation(weights,bias,input,output,Z,A)
             dW{end-(i-1)} = A{end-i} * back_error';
         end
         
-        db{end-(i-1)} = ones(size(bias{end-(i-1)},1),1).*sum(back_error,2);
+        db{end-(i-1)} = sum(back_error,2);
         if i == weights_total
             continue
         else
