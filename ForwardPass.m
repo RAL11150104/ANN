@@ -16,8 +16,8 @@ function [Yo, J, Z, A] = ForwardPass(W,b,X_train,Ydata)
             A{i} = relu(Z{i});  %%300x14
         elseif i == L %Last Layer
             Z{i} = A{i-1}*W{1,i};
-            A{i} = softmax(Z{i}.'); % To make output into probabilities
-            Yo = A{L}.'; %% 300x3
+            A{i} = softmax(Z{i}.'); %To make output into probabilities
+            Yo = A{L}.'; %%300x14
         else %Middle Layer
             Z{i} = A{i-1}*W{1,i}.'+b{1,i}.'; 
             A{i} = relu(Z{i}); %%300x14
