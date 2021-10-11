@@ -30,4 +30,8 @@ function [dW,db] = backpropagation(weights,bias,input,output,Z,A)
         end
     end
     
+    for i = length(weights)
+       dW{i} = dW{i}';
+    end
+    
 end
