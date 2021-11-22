@@ -16,7 +16,7 @@ h = size(fnn,2);
 f_size = [5,2,5,2];
 skip_size = [1,2,1,2];
 f_num = [6,6,16,16];
-conv_seq = [1,1,1,1];
+conv_seq = [1,0,1,0];
 pad_size = [0,0,0,0];
 
 E = 100;
